@@ -1,2 +1,5 @@
 ﻿  vj1.c
+c:\users\student\desktop\nino_mirko\strukture_podataka\vjezbe_1\vjezbe_1\vj1.c(23): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
+c:\users\student\desktop\nino_mirko\strukture_podataka\vjezbe_1\vjezbe_1\vj1.c(40): warning C4477: 'fscanf' : format string '%d' requires an argument of type 'int *', but variadic argument 3 has type 'int'
+c:\users\student\desktop\nino_mirko\strukture_podataka\vjezbe_1\vjezbe_1\vj1.c(43): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   vjezbe_1.vcxproj -> C:\Users\student\Desktop\Nino_Mirko\strukture_podataka\vjezbe_1\Debug\vjezbe_1.exe
