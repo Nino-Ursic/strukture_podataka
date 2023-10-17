@@ -10,7 +10,7 @@ typedef struct {
 }Osoba;
 
 int main() {
-	int n=0;//broj redaka
+	int n=1;//broj redaka
 	int i;
 	int max_br_bodova;
 	float  relativan_br_bodova;
@@ -20,7 +20,7 @@ int main() {
 		puts("Pogreska!");
 		return 1;
 	}
-	while (feof(fp)!=NULL) {
+	while (!feof(fp)) {
 		char z = getc(fp);
 		if (z=='\n') {
 			n++;
@@ -30,20 +30,14 @@ int main() {
 	osobe = (Osoba *)malloc(sizeof(Osoba)*n);//dinamicka alokacija memorije
 	
 	
-	
-
-
 	printf("Unesite max broj bodova:\n");
 	scanf("%d", &max_br_bodova);
 	printf("Popis:\n");
+	fseek(fp, 0, SEEK_SET);
 	for (i = 0; i < n; i++) {
-		fscanf(fp,"%s %s %d", osobe[i].ime, osobe[i].prezime, osobe[i].br_bodova);
-		printf("Ime: %s.\n", osobe[i].ime);
-		printf("Prezime: %s.\n", osobe[i].prezime);
-		relativan_br_bodova = osobe[i].br_bodova / max_br_bodova * 100;
-		printf("Apsolutan broj bodova: %d.\n", osobe[i].br_bodova);
-		printf("Relativan broj bodova: %f.\n", relativan_br_bodova);
-		printf("\n");
+		fscanf(fp,"%s %s %d", osobe[i].ime, osobe[i].prezime, &osobe[i].br_bodova);
+		relativan_br_bodova = (float)osobe[i].br_bodova / max_br_bodova * 100;
+		printf("Ime: %s.\nPrezime: %s.\nApsolutan broj bodova: %d.\nRelativan broj bodova: %f.\n", osobe[i].ime, osobe[i].prezime, osobe[i].br_bodova, relativan_br_bodova);
 	}
 	fclose(fp);
 	free(osobe);
