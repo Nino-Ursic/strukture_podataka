@@ -1,18 +1,18 @@
+
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+// uredi find surname
 /*
-2. Definirati strukturu osoba (ime, prezime, godina roðenja) i napisati program koji:
-A. dinamièki dodaje novi element na poèetak liste,
-B. ispisuje listu,
-C. dinamièki dodaje novi element na kraj liste,
-D. pronalazi element u listi (po prezimenu),
-E. briše odreðeni element iz liste,
-U zadatku se ne smiju koristiti globalne varijable.
-
+3. Prethodnom zadatku dodati funkcije :
+A.dinamièki dodaje novi element iza odreðenog elementa,
+B.dinamièki dodaje novi element ispred odreðenog elementa,
+C.sortira listu po prezimenima osoba,
+D.upisuje listu u datoteku,
+E.èita listu iz datoteke.
 */
+
 typedef struct person Person;
 typedef Person* Position;
 
@@ -28,7 +28,9 @@ int print_list(Position temp);
 void add_last(Position last);
 void find_surname(Position temp);
 void delete_element(Position temp);
-
+void add_after(Position temp);
+void add_before(Position temp);
+void sort_by_surname(Position temp);
 
 int main() {
 
@@ -39,8 +41,11 @@ int main() {
     add_last(&head);
     print_list(&head);
     find_surname(&head);
-    delete_element(&head);
+    //delete_element(&head);
+    add_after(&head);
+    add_before(&head);
     print_list(&head);
+    sort_by_surname(&head);
 
 
     return 0;
@@ -90,7 +95,7 @@ void add_last(Position last) {
 
 }
 void find_surname(Position temp) {
-    
+
     printf("\nInsert surname you want to find:");
     char wanted[50];
     scanf("%s", wanted);
@@ -130,4 +135,66 @@ void delete_element(Position temp) {
     else {
         printf("Element not found!\n");
     }
+}
+void add_after(Position temp){
+    Position new_element = (Position)malloc(sizeof(Person));
+    Position wanted = temp;
+    printf("----ADDING AFTER WANTED ELEMENT----\n");
+    printf("Insert wanted name:");
+    scanf("%s", wanted->name);
+    printf("Insert wanted surname:");
+    scanf("%s", wanted->surname);
+    printf("Insert wanted year:");
+    scanf("%d", &wanted->birth_year);
+    while (temp->position != NULL) {
+        temp = temp->position;
+        if (strcmp(temp->surname, wanted->surname) == 0 && strcmp(temp->name, wanted->name) == 0 && temp->birth_year == wanted->birth_year) {
+            break;
+        }
+        else if (temp->position == NULL) {
+            printf("Element not found!");
+        }
+    }
+    new_element->position = temp->position;
+    temp->position = new_element;
+    printf("Insert name of new element:");
+    scanf("%s", new_element->name);
+    printf("Insert surname:");
+    scanf("%s", new_element->surname);
+    printf("Insert birth year:");
+    scanf("%d", &new_element->birth_year);
+    
+}
+void add_before(Position temp) {
+    Position new_element = (Position)malloc(sizeof(Person));
+    Position wanted = temp;
+    Position previous=temp;
+    printf("----ADDING BEFORE WANTED ELEMENT----\n");
+    printf("Insert wanted name:");
+    scanf("%s", wanted->name);
+    printf("Insert wanted surname:");
+    scanf("%s", wanted->surname);
+    printf("Insert wanted year:");
+    scanf("%d", &wanted->birth_year);
+    while (temp->position != NULL) {
+        temp = temp->position;
+        if (strcmp(temp->surname, wanted->surname) == 0 && strcmp(temp->name, wanted->name) == 0 && temp->birth_year == wanted->birth_year) {
+            break;
+        }
+        else if (temp->position == NULL) {
+            printf("Element not found!");
+        }
+        previous = previous->position;
+    }
+    new_element->position = previous->position;
+    previous->position = new_element;
+    printf("Insert name of new element:");
+    scanf("%s", new_element->name);
+    printf("Insert surname:");
+    scanf("%s", new_element->surname);
+    printf("Insert birth year:");
+    scanf("%d", &new_element->birth_year); 
+}
+void sort_by_surname(Position temp) {
+
 }
