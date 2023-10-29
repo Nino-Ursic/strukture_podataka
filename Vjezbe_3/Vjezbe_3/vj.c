@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-// uredi find surname
+
 /*
 3. Prethodnom zadatku dodati funkcije :
 A.dinamièki dodaje novi element iza odreðenog elementa,
@@ -31,6 +31,8 @@ void delete_element(Position temp);
 void add_after(Position temp);
 void add_before(Position temp);
 void sort_by_surname(Position temp);
+int add_to_file(Position temp);
+int read_from_file();
 
 int main() {
 
@@ -41,12 +43,13 @@ int main() {
     add_last(&head);
     print_list(&head);
     find_surname(&head);
-    //delete_element(&head);
+    delete_element(&head);
     add_after(&head);
     add_before(&head);
     print_list(&head);
-    sort_by_surname(&head);
-
+    //sort_by_surname(&head);
+    add_to_file(&head);
+    read_from_file();
 
     return 0;
 };
@@ -69,7 +72,7 @@ int print_list(Position temp) {
     printf("-----ISPIS LISTE-----\n");
     while (1) {
         temp = temp->position;
-        printf("Name: %s\nSurname: %s\nYear of birth: %d\n", temp->name, temp->surname, temp->birth_year);
+        printf("Name: %s\nSurname: %s\nYear of birth: %d\n\n", temp->name, temp->surname, temp->birth_year);
         if (temp->position == NULL) {
             return 0;
         }
@@ -136,7 +139,7 @@ void delete_element(Position temp) {
         printf("Element not found!\n");
     }
 }
-void add_after(Position temp){
+void add_after(Position temp) {
     Position new_element = (Position)malloc(sizeof(Person));
     Position wanted = temp;
     printf("----ADDING AFTER WANTED ELEMENT----\n");
@@ -157,18 +160,18 @@ void add_after(Position temp){
     }
     new_element->position = temp->position;
     temp->position = new_element;
-    printf("Insert name of new element:");
+    printf("\nInsert name of new element:");
     scanf("%s", new_element->name);
     printf("Insert surname:");
     scanf("%s", new_element->surname);
     printf("Insert birth year:");
     scanf("%d", &new_element->birth_year);
-    
+
 }
 void add_before(Position temp) {
     Position new_element = (Position)malloc(sizeof(Person));
     Position wanted = temp;
-    Position previous=temp;
+    Position previous = temp;
     printf("----ADDING BEFORE WANTED ELEMENT----\n");
     printf("Insert wanted name:");
     scanf("%s", wanted->name);
@@ -188,13 +191,60 @@ void add_before(Position temp) {
     }
     new_element->position = previous->position;
     previous->position = new_element;
-    printf("Insert name of new element:");
+    printf("\nInsert name of new element:");
     scanf("%s", new_element->name);
     printf("Insert surname:");
     scanf("%s", new_element->surname);
     printf("Insert birth year:");
-    scanf("%d", &new_element->birth_year); 
+    scanf("%d", &new_element->birth_year);
 }
 void sort_by_surname(Position temp) {
 
+}
+int add_to_file(Position temp) {
+    FILE* file_pointer;
+    file_pointer = fopen("text.txt", "a");
+    if (file_pointer == NULL) {
+        puts("Pogreska!");
+        return 1;
+    }
+
+    fprintf(file_pointer, "Name   Surname    Year of birth\n");
+    while (1) {
+        temp = temp->position;
+        fprintf(file_pointer, "%s\t%s\t%d\n", temp->name, temp->surname, temp->birth_year);
+        if (temp->position == NULL) {
+            break;
+        }
+    }
+    fclose(file_pointer);
+    return 0;
+}
+
+int read_from_file() {
+    Position temp = (Position)malloc(sizeof(Person));
+    int number = -1, i = 0;
+    FILE* file_pointer;
+    file_pointer = fopen("text.txt", "r");
+    if (file_pointer == NULL) {
+        puts("Pogreska!");
+        return 1;
+    }
+    while (!feof(file_pointer)) {
+        char z = getc(file_pointer);
+        if (z == '\n') {
+            number++;
+        }
+    }
+    fseek(file_pointer, 0, SEEK_SET);
+
+    fscanf(file_pointer, "%*s %*s %*s %*s %*s");
+
+
+    printf("-----STUDENTS IN FILE-----\n");
+    for (i = 0; i < number; i++) {
+        fscanf(file_pointer, "%s %s %d", temp->name, temp->surname, &temp->birth_year);
+        printf("Name:%s\nSurname:%s\nYear of birth:%d\n\n", temp->name, temp->surname, temp->birth_year);
+    }
+    return 0;
 }
