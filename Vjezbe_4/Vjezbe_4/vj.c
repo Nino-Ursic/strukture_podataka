@@ -1,10 +1,3 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
@@ -24,7 +17,7 @@ struct pol {
     Position next;
 };
 
-void read_from_file(Position head1, Position head2);
+int read_from_file(Position head1, Position head2);
 void string_into_list(char* buffer, Position head);
 void add_sorted(Position head, int coef, int expo);
 void print_list(Position head1);
@@ -59,10 +52,13 @@ int main() {
 
 
 
-void read_from_file(Position head1, Position head2) {
+int read_from_file(Position head1, Position head2) {
     FILE* file_pointer = NULL;
     file_pointer = fopen("polinoms.txt", "r");
-
+    if (!file_pointer) {
+        printf("ERROR FILE COULD NOT OPEN");
+        return 0;
+    }
     char buffer[1024] = { 0 };
 
     fgets(buffer, 1024, file_pointer);
@@ -71,7 +67,7 @@ void read_from_file(Position head1, Position head2) {
     fgets(buffer, 1024, file_pointer);
     string_into_list(buffer, head2);
 
-
+    return 0;
 }
 
 void string_into_list(char* buffer, Position head) {
