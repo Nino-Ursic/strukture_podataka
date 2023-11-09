@@ -1,4 +1,3 @@
-
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
@@ -19,7 +18,7 @@ struct pol {
 
 int read_from_file(Position head1, Position head2);
 void string_into_list(char* buffer, Position head);
-void add_sorted(Position head, int coef, int expo);
+int add_sorted(Position head, int coef, int expo);
 void print_list(Position head1);
 void add_polinoms(Position head1, Position head2, Position adding_head);
 void multiply_polinoms(Position head1, Position head2, Position multiply_head);
@@ -72,22 +71,33 @@ int read_from_file(Position head1, Position head2) {
 
 void string_into_list(char* buffer, Position head) {
     char* currentBuffer = buffer;
-    int numBytes, coef, expo;
+    int numBytes, coef, expo, status;
 
-    while (strlen(currentBuffer) > 0) {//
-        sscanf(currentBuffer, "%dx^%d %n", &coef, &expo, &numBytes);
+    while (strlen(currentBuffer) > 0) {
+        if (status = sscanf(currentBuffer, "%dx^%d %n", &coef, &expo, &numBytes) != 2) {
+            printf("Unable to read polinom");
+            currentBuffer += numBytes;
+            break;
+        }
         add_sorted(head, coef, expo);
         currentBuffer += numBytes;
     }
 }
 
-void add_sorted(Position head, int coef, int expo) {
+int add_sorted(Position head, int coef, int expo) {
     Position temp = head->next;
     Position previous = head;
     Position new_element = (Position)malloc(sizeof(polinom));
-
+    if (new_element == NULL) {
+        printf("Unable to alocate memory to new element");
+        return 1;
+    }
     new_element->coefficient = coef;
     new_element->exponent = expo;
+    if (new_element->coefficient == 0) {
+        free(new_element);
+        return 0;
+    }
 
     while (temp != NULL) {
         if (new_element->exponent > temp->exponent) {
@@ -98,8 +108,13 @@ void add_sorted(Position head, int coef, int expo) {
         else if (new_element->exponent == temp->exponent) {
             temp->coefficient = temp->coefficient + new_element->coefficient;
             free(new_element);
+            if (temp->coefficient == 0) {
+                previous->next = temp->next;
+                free(temp);
+            }
             break;
         }
+
         temp = temp->next;
         previous = previous->next;
     }
@@ -107,7 +122,7 @@ void add_sorted(Position head, int coef, int expo) {
         new_element->next = previous->next;
         previous->next = new_element;
     }
-
+    return 0;
 
 }
 
@@ -161,6 +176,7 @@ void multiply_polinoms(Position head1, Position head2, Position multiply_head) {
         }
     }
 }
+
 
 
 
