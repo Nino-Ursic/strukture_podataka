@@ -109,6 +109,10 @@ int calculate(Position head, char operation, double* result) {
         *result = number2 * number1;
         break;
     case '/':
+        if (number1 == 0) {
+            printf("can't divide by 0");
+            return 1;
+        }
         *result = number2 / number1;
         break;
     default:
