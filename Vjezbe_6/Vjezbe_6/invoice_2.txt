@@ -1,0 +1,5 @@
+2023-1-5
+proizvod2, 20, 1.5
+proizvod1, 10, 2.5
+proizvod5, 20, 1.5
+proizvod4, 15, 3.4
