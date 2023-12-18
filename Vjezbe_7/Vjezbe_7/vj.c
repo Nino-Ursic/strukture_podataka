@@ -1,8 +1,8 @@
 /*
-7. Napisati program koji pomoÊu vezanih listi (stabala) predstavlja strukturu direktorija.
-OmoguÊiti unos novih direktorija i pod-direktorija, ispis sadrûaja direktorija i
-povratak u prethodni direktorij. ToËnije program treba preko menija simulirati
-koriötenje DOS naredbi: 1- "md", 2 - "cd dir", 3 - "cd..", 4 - "dir" i 5 ñ izlaz.
+7. Napisati program koji pomo√¶u vezanih listi (stabala) predstavlja strukturu direktorija.
+Omogu√¶iti unos novih direktorija i pod-direktorija, ispis sadr≈æaja direktorija i
+povratak u prethodni direktorij. To√®nije program treba preko menija simulirati
+kori≈°tenje DOS naredbi: 1- "md", 2 - "cd dir", 3 - "cd..", 4 - "dir" i 5 ‚Äì izlaz.
 */
 
 
@@ -11,7 +11,7 @@ koriötenje DOS naredbi: 1- "md", 2 - "cd dir", 3 - "cd..", 4 - "dir" i 5 ñ izlaz
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_NAME_LENGTH 50
+
 
 typedef struct directory Directory;
 typedef Directory* position_Directory;
@@ -87,7 +87,7 @@ int main() {
 
             char name[50];
 
-            printf("Unesite ime ûeljenog direktorija:");
+            printf("Unesite ime ≈æeljenog direktorija:");
             scanf("%s", name);
 
             current_directory = find_directory(current_directory, name);
