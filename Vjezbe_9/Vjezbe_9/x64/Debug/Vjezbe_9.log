@@ -1,0 +1,3 @@
+﻿  vj.c
+C:\Users\Victus\Desktop\FESB\STRUKT\strukture_podataka\Vjezbe_9\Vjezbe_9\vj.c(67,11): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Vjezbe_9.vcxproj -> C:\Users\Victus\Desktop\FESB\STRUKT\strukture_podataka\Vjezbe_9\x64\Debug\Vjezbe_9.exe
