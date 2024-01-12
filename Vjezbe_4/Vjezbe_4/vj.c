@@ -4,9 +4,9 @@
 #include<string.h>
 
 /*
-4. Napisati program za zbrajanje i množenje polinoma. Koeficijenti i eksponenti se
-èitaju iz datoteke.
-Napomena: Eksponenti u datoteci nisu nužno sortirani.
+4. Napisati program za zbrajanje i mnoÅ¾enje polinoma. Koeficijenti i eksponenti se
+Ã¨itaju iz datoteke.
+Napomena: Eksponenti u datoteci nisu nuÅ¾no sortirani.
 */
 typedef struct pol polinom;
 typedef polinom* Position;
@@ -71,7 +71,7 @@ int read_from_file(Position head1, Position head2) {
 
 void string_into_list(char* buffer, Position head) {
     char* currentBuffer = buffer;
-    int numBytes, coef, expo, status;
+    int numBytes=0, coef=0, expo=0, status=0;
 
     while (strlen(currentBuffer) > 0) {
         if (status = sscanf(currentBuffer, "%dx^%d %n", &coef, &expo, &numBytes) != 2) {
