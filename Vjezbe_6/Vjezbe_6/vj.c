@@ -5,13 +5,13 @@
 #include <ctype.h>
 
 /*
-6. Napisati program koji Ëita datoteku racuni.txt u kojoj su zapisani nazivi svih datoteka koji
-predstavljaju pojedini raËun. Na poËetku svake datoteke je zapisan datum u kojem vremenu je
-raËun izdat u formatu YYYY-MM-DD. Svaki sljedeÊi red u datoteci predstavlja artikl u formatu
-naziv, koliËina, cijena. Potrebno je formirati vezanu listu raËuna sortiranu po datumu. Svaki Ëvor
-vezane liste sadrûava vezanu listu artikala sortiranu po nazivu artikla. Nakon toga potrebno je
-omoguÊiti upit kojim Êe korisnik saznati koliko je novaca sveukupno potroöeno na specifiËni
-artikl u odreenom vremenskom razdoblju i u kojoj je koliËini isti kupljen.
+6. Napisati program koji √®ita datoteku racuni.txt u kojoj su zapisani nazivi svih datoteka koji
+predstavljaju pojedini ra√®un. Na po√®etku svake datoteke je zapisan datum u kojem vremenu je
+ra√®un izdat u formatu YYYY-MM-DD. Svaki sljede√¶i red u datoteci predstavlja artikl u formatu
+naziv, koli√®ina, cijena. Potrebno je formirati vezanu listu ra√®una sortiranu po datumu. Svaki √®vor
+vezane liste sadr≈æava vezanu listu artikala sortiranu po nazivu artikla. Nakon toga potrebno je
+omogu√¶iti upit kojim √¶e korisnik saznati koliko je novaca sveukupno potro≈°eno na specifi√®ni
+artikl u odre√∞enom vremenskom razdoblju i u kojoj je koli√®ini isti kupljen.
 */
 
 typedef struct article Article;
@@ -89,8 +89,8 @@ int read_from_file(Position_I head_I) {
 int add_inovice_sorted(Position_I head_I, char file_name[]) {
 
     char article_name[50];
-    int quantity;
-    double price;
+    int quantity = 0;
+    double price = 0.0;
 
     Position_I temp = head_I;
 
@@ -211,10 +211,10 @@ int request(Position_I head_I) {
     printf("\nUnesite ime artikla:");
     scanf("%s", name);
 
-    printf("\nUnesite poËetni datum(dan, mjesec i godinu)\n");
+    printf("\nUnesite po√®etni datum(dan, mjesec i godinu)\n");
     scanf("%d %d %d", &start.day, &start.month, &start.year);
 
-    printf("\nUnesite konaËni datum(dan, mjesec i godinu)\n");
+    printf("\nUnesite kona√®ni datum(dan, mjesec i godinu)\n");
     scanf("%d %d %d", &finish.day, &finish.month, &finish.year);
 
 
@@ -245,12 +245,12 @@ int request(Position_I head_I) {
     }
 
     if (flag) {
-        printf("Traûeni proizvod nije pronaen\n");
+        printf("Tra≈æeni proizvod nije prona√∞en\n");
         return 1;
     }
 
-    printf("Kupljena koliËina je: %d\n", quantity);
-    printf("Cijena te koliËine je: %lf\n", price);
+    printf("Kupljena koli√®ina je: %d\n", quantity);
+    printf("Cijena te koli√®ine je: %lf\n", price);
 
     return 0;
 }
