@@ -6,11 +6,11 @@
 
 /*
 3. Prethodnom zadatku dodati funkcije :
-A.dinamièki dodaje novi element iza odreðenog elementa,
-B.dinamièki dodaje novi element ispred odreðenog elementa,
+A.dinamiÃ¨ki dodaje novi element iza odreÃ°enog elementa,
+B.dinamiÃ¨ki dodaje novi element ispred odreÃ°enog elementa,
 C.sortira listu po prezimenima osoba,
 D.upisuje listu u datoteku,
-E.èita listu iz datoteke.
+E.Ã¨ita listu iz datoteke.
 */
 
 typedef struct person Person;
@@ -57,7 +57,7 @@ int main() {
 void add_first(Position head) {
     Position new_element;
     new_element = (Position)malloc(sizeof(Person));
-    printf("----DODAVANJE ELEMENTA NA POÈETAK LISTE----\n");
+    printf("----DODAVANJE ELEMENTA NA POÃˆETAK LISTE----\n");
     new_element->position = head->position;
     printf("insert name:");
     scanf("%s", new_element->name);
@@ -246,5 +246,7 @@ int read_from_file() {
         fscanf(file_pointer, "%s %s %d", temp->name, temp->surname, &temp->birth_year);
         printf("Name:%s\nSurname:%s\nYear of birth:%d\n\n", temp->name, temp->surname, temp->birth_year);
     }
+
+    fclose(file_pointer);
     return 0;
 }

@@ -4,7 +4,7 @@
 #include<string.h>
 
 /*
-5. Napisati program koji iz datoteke èita postfiks izraz i zatim korištenjem stoga raèuna
+5. Napisati program koji iz datoteke Ã¨ita postfiks izraz i zatim koriÅ¡tenjem stoga raÃ¨una
 rezultat. Stog je potrebno realizirati preko vezane liste.
 */
 typedef struct element Element;
@@ -39,7 +39,7 @@ int main() {
 int calculateFromPostfix(char* fileName, Position head, double* result, char* buffer) {
 
     char operation;
-    int status, numBytes, n;
+    int status=0, numBytes=0, n=0;
     readPostfixFromFile(fileName, buffer);
 
     while (strlen(buffer) > 0) {
@@ -92,7 +92,7 @@ int pushElement(Position head, int n) {
 }
 
 int calculate(Position head, char operation, double* result) {
-    int number1, number2;
+    int number1=0, number2=0;
 
     if (pop(head, &number1) || pop(head, &number2) == 1) {
         return 1;
