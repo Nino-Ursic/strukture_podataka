@@ -1,0 +1,53 @@
+To Kill a Mockingbird, Harper Lee, 1960, 4
+-, 
+1984, George Orwell, 1949, 2
+-, 
+The Great Gatsby, F. Scott Fitzgerald, 1925, 1
+-, 
+The Catcher in the Rye, J.D. Salinger, 1951, 3
+-, 
+One Hundred Years of Solitude, Gabriel García Márquez, 1967, 5
+-, 
+Pride and Prejudice, Jane Austen, 1813, 1
+-, 
+The Hobbit, J.R.R. Tolkien, 1937, 2
+-, 
+The Lord of the Rings, J.R.R. Tolkien, 1955, 3
+-, 
+To the Lighthouse, Virginia Woolf, 1927, 4
+-, 
+Brave New World, Aldous Huxley, 1932, 5
+-, 
+The Brothers Karamazov, Fyodor Dostoevsky, 1880, 1
+-, 
+Moby-Dick, Herman Melville, 1851, 2
+-, 
+The Picture of Dorian Gray, Oscar Wilde, 1890, 3
+-, 
+Crime and Punishment, Fyodor Dostoevsky, 1866, 4
+-, 
+The Grapes of Wrath, John Steinbeck, 1939, 5
+-, 
+The Da Vinci Code, Dan Brown, 2003, 2
+-, 
+The Hunger Games, Suzanne Collins, 2008, 3
+-, 
+Harry Potter and the Philosopher's Stone, J.K. Rowling, 1997, 4
+-, 
+The Diary of a Young Girl, Anne Frank, 1947, 5
+-, 
+The Shining, Stephen King, 1977, 1
+-, 
+The Girl with the Dragon Tattoo, Stieg Larsson, 2005, 2
+-, 
+The Help, Kathryn Stockett, 2009, 3
+-, 
+The Silent Patient, Alex Michaelides, 2019, 2
+-, 
+Educated, Tara Westover, 2018, 3
+-, 
+Sapiens: A Brief History of Humankind, Yuval Noah Harari, 2014, 4
+-, 
+Becoming, Michelle Obama, 2018, 5
+-,
+

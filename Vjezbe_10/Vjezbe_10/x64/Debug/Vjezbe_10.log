@@ -1,2 +1,4 @@
 ﻿  vj.c
+C:\Users\Victus\Desktop\FESB\STRUKT\strukture_podataka\Vjezbe_10\Vjezbe_10\vj.c(122,5): warning C4013: 'print_hash' undefined; assuming extern returning int
+C:\Users\Victus\Desktop\FESB\STRUKT\strukture_podataka\Vjezbe_10\Vjezbe_10\vj.c(545,15): warning C4013: 'hash_key' undefined; assuming extern returning int
   Vjezbe_10.vcxproj -> C:\Users\Victus\Desktop\FESB\STRUKT\strukture_podataka\Vjezbe_10\x64\Debug\Vjezbe_10.exe

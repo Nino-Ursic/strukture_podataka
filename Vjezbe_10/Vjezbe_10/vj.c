@@ -56,6 +56,10 @@ struct tree_element_b {
     tree_position_b L;
     tree_position_b R;
 };
+// 11)
+typedef struct list_element Hash;
+typedef Hash* hash_position;
+
 
 // a)
 int read_file(list_position head, char* fileName);
@@ -77,9 +81,14 @@ int print_list(list_position_b head);
 int find_b(tree_position_b root, char* country);
 int print_cities_b(list_position_b head);
 
+int country_to_hash(hash_position* country_hash);
+int add_to_hash(hash_position* country_hash, char* country, char* country_file);
+
+
 int main()
 {
     // a)
+    /*
     list_Element head = {
         .root = NULL,
         .next = NULL,
@@ -95,7 +104,7 @@ int main()
         .L = NULL,
         .R = NULL,
     };
-
+    
     read_file_b(&root, "drzave.txt");
     print_b(&root);
 
@@ -105,6 +114,12 @@ int main()
     scanf(" %[^\n]", country);
 
     find_b(&root, country);
+    */
+    hash_position country_hash[11];
+    
+
+    country_to_hash(country_hash);
+    print_hash(country_hash);
 
 
     return 0;
@@ -275,7 +290,10 @@ int find_a(list_position head) {
 
         temp = temp->next;
     }
-
+    if (temp == NULL) {
+        printf("country not found");
+        return 0;
+    }
     int min = 0;
 
     printf("Unesite minimalnu vrijednost stanovnika: ");
@@ -496,6 +514,111 @@ int print_cities_b(list_position_b head) {
 
     return 0;
 }
+
+int country_to_hash(hash_position* country_hash) {
+
+
+    for (int i = 0; i < 11; i++) {
+        country_hash[i] = NULL;
+    }
+
+    FILE* file = NULL;
+    file = fopen("drzave.txt", "r");
+
+    if (file == NULL) {
+        printf("ERROR opening file");
+        return 1;
+    }
+
+    char country[50];
+    char country_file[50];
+
+    while (fscanf(file, "%[^,], %s\n", country, country_file) == 2) {
+        add_to_hash(country_hash, country, country_file);
+    }
+
+    return 0;
+}
+
+int add_to_hash(hash_position* country_hash, char* country, char* country_file) {
+
+    int key = hash_key(country);
+
+    hash_position new_hash = (hash_position)malloc(sizeof(Hash));
+
+    if (new_hash == NULL) {
+        printf("ERROR alocating memory");
+        return 0;
+    }
+
+    strcpy(new_hash->name, country);
+    new_hash->root = NULL;
+    new_hash->next = NULL;
+
+    hash_position temp = country_hash[key];
+
+    if (temp == NULL) {
+        country_hash[key] = new_hash;
+    }
+    else {
+        while (temp->next != NULL) {
+
+            if (strcmp(country, temp->next->name) < 0) {
+                break;
+            }
+
+            temp = temp->next;
+        }
+
+        new_hash->next = temp->next;
+        temp->next = new_hash;
+    }
+
+    tree_position root = (tree_position)malloc(sizeof(tree_Element));
+    if (root == NULL) {
+        printf("ERROR alocating memory");
+        return 1;
+    }
+    root->L = NULL;
+    root->R = NULL;
+
+    new_hash->root = root;
+
+    read_country_file(new_hash->root, country_file);
+
+    return 0;
+}
+
+int hash_key(char* str) {
+    int key = 0, i = 0;
+
+    while (i < 5 && str[i] != '\0') {
+        key += (int)str[i];
+        i++;
+    }
+
+    return key%11;
+}
+
+int print_hash(hash_position* country_hash) {
+
+    int i = 0;
+
+    for (i = 0; i < 11; i++) {
+        hash_position temp = country_hash[i];
+
+        while (temp != NULL) {
+            printf("\n%s\n", temp->name);
+            print_inorder(temp->root);
+
+            temp = temp->next;
+        }
+    }
+
+    return 0;
+}
+
+
 
 
 
